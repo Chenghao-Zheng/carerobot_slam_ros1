@@ -1,0 +1,13 @@
+# 核心参数调整
+HZ: 20
+PREDICT_TIME: 2.0
+VELOCITY_RESOLUTION: 0.05
+YAWRATE_RESOLUTION: 0.1
+
+# 代价权重 (重要！请按此设置)
+TO_GOAL_COST_GAIN: 0.3        # 调低！让小车不再那么“死板”地追寻轨迹
+SPEED_COST_GAIN: 0.2          # 调低！
+OBSTACLE_COST_GAIN: 10.0      # 调高！！让障碍物成为不可逾越的鸿沟
+
+TEMP_GOAL_RADIUS: 1.5         # 缩短前瞻，减少切弯冲动
+GOAL_THRESHOLD: 0.2

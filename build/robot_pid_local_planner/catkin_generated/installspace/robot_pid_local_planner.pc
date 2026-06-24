@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/carerobot_slam_ros1/install
+
+Name: robot_pid_local_planner
+Description: Description of robot_pid_local_planner
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

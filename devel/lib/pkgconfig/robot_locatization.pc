@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/carerobot_slam_ros1/devel
+
+Name: robot_locatization
+Description: Description of robot_locatization
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

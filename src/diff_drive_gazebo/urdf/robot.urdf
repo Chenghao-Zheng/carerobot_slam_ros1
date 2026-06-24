@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="tri_steer">
+
+  <!-- ======= 虚拟基座（必须放最前面作为根 link） ======= -->
+  <link name="base_footprint">
+    <inertial>
+      <mass value="0.001"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+    <!-- 加一个极小的碰撞体，避免 Gazebo 忽略该 link -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ======= 底盘 ======= -->
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00029824 2.0282E-05 0.11676"
+        rpy="0 0 0" />
+      <mass
+        value="1.7652" />
+      <inertia
+        ixx="0.010632"
+        ixy="9.8514E-06"
+        ixz="-1.4455E-05"
+        iyy="0.01085"
+        iyz="-1.0957E-06"
+        izz="0.008973" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diff_drive_gazebo/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diff_drive_gazebo/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- base_footprint 固定连接 base_link -->
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ======= 左轮 ======= -->
+  <link
+    name="wheel1">
+    <inertial>
+      <origin
+        xyz="-4.785E-12 0.008116 1.4731E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.052039" />
+      <inertia
+        ixx="1.7758E-05"
+        ixy="4.1811E-16"
+        ixz="-2.8064E-14"
+        iyy="3.2466E-05"
+        iyz="-2.5217E-15"
+        izz="1.7758E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diff_drive_gazebo/meshes/wheel1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diff_drive_gazebo/meshes/wheel1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+    <joint
+    name="joint1"
+    type="continuous">
+    <origin
+      xyz="-0.013618 0.1186 0.01715"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel1" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+  <!-- ======= 右轮 ======= -->
+  <link
+    name="wheel2">
+    <inertial>
+      <origin
+        xyz="8.0422E-15 -0.008116 -4.2688E-14"
+        rpy="0 0 0" />
+      <mass
+        value="0.052039" />
+      <inertia
+        ixx="1.7758E-05"
+        ixy="6.0139E-20"
+        ixz="-2.5647E-20"
+        iyy="3.2466E-05"
+        iyz="3.8403E-21"
+        izz="1.7758E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diff_drive_gazebo/meshes/wheel2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://diff_drive_gazebo/meshes/wheel2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+   <joint
+    name="joint2"
+    type="continuous">
+    <origin
+      xyz="-0.013618 -0.1186 0.01715"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel2" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+  <!-- ======= 激光雷达 ======= -->
+  <link name="laser">
+    <inertial>
+      <mass value="0.1" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="1e-4" ixy="0" ixz="0" iyy="1e-4" iyz="0" izz="1e-4" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.03" length="0.05" />
+      </geometry>
+      <material name="Gray">
+        <color rgba="0.6 0.6 0.6 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.03" length="0.05" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="laser" />
+    <origin xyz="0.25 0 0.12" rpy="0 0 0" />
+  </joint>
+
+  <!-- ========== Gazebo 物理和传感器 ========== -->
+  <gazebo reference="laser">
+    <sensor type="ray" name="laser_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>10.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
+        <topicName>/not_true_scan</topicName>
+        <frameName>laser</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- 摩擦调低，防止侧翻 -->
+  <gazebo reference="wheel1">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>2e5</kp>          <!-- 降到 20 万 -->
+  <kd>100</kd>          <!-- 提高阻尼到 100 -->
+  <minDepth>0.01</minDepth>
+  <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="wheel2">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>2e5</kp>          <!-- 降到 20 万 -->
+  <kd>100</kd>          <!-- 提高阻尼到 100 -->
+  <minDepth>0.01</minDepth>
+  <material>Gazebo/Black</material>
+  </gazebo>
+
+  <!-- ========== 差速驱动插件（负责发布 odom->base_footprint TF） ========== -->
+
+<gazebo>
+  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+    <leftJoint>joint1</leftJoint>
+    <rightJoint>joint2</rightJoint>
+    <wheelSeparation>0.2372</wheelSeparation>
+    <wheelDiameter>0.07</wheelDiameter>
+    <wheelTorque>20.0</wheelTorque>  <!-- 加大扭矩，高速不炸 -->
+    <wheelAcceleration>5.0</wheelAcceleration> <!-- 加加速度限制 -->
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <robotBaseFrame>base_footprint</robotBaseFrame>
+    <publishOdometryTf>true</publishOdometryTf>
+    <publishWheelTF>true</publishWheelTF>
+    <updateRate>100.0</updateRate>
+    <rosDebugLevel>info</rosDebugLevel>
+    <invert_right_wheel>true</invert_right_wheel>
+  </plugin>
+</gazebo>
+
+</robot>

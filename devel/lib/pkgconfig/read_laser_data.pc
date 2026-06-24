@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/carerobot_slam_ros1/devel
+
+Name: read_laser_data
+Description: Description of read_laser_data
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

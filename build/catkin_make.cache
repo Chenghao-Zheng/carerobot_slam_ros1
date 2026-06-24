@@ -1,0 +1,2 @@
+diff_drive_gazebo:read_laser_data:robot_communication:robot_costmap:robot_navigation:robot_pid_local_planner
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/carerobot_slam_ros1/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/carerobot_slam_ros1/install -G Unix Makefiles

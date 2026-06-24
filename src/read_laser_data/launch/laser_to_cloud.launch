@@ -1,0 +1,11 @@
+<launch>
+  <!-- 启动节点 -->
+  <node name="laser1_to_cloud_node" pkg="read_laser_data" type="laser1_to_cloud_node" output="screen" >
+    <!-- 将节点订阅的 /scan 重映射到实际激光雷达话题 -->
+    <remap from="/scan" to="/not_true_scan"/>
+    <!-- 当前是否为仿真状态 -->
+    <param name="is_use_sim" value="true" type="bool" />
+    <!-- 激光雷达 frame_id 名称 -->
+    <param name="laserFrame" type="string" value="laser" />
+  </node>
+</launch>

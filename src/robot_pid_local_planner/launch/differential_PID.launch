@@ -1,0 +1,11 @@
+<launch>
+  <rosparam file="$(find robot_pid_local_planner)/config/differential_pid_param.yaml" command="load"/>
+
+  <node pkg="robot_pid_local_planner"
+        type="differential_pid_local_planner_node"
+        name="differential_pid_local_planner"
+        output="screen">
+    <!-- 输出直接到 /cmd_vel（Gazebo 差速插件订阅） -->
+    <!-- <remap from="/cmd_vel" to="/cmd_vel"/> -->
+  </node>
+</launch>

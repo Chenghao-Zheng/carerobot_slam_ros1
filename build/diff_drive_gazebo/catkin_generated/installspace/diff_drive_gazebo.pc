@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/carerobot_slam_ros1/install
+
+Name: diff_drive_gazebo
+Description: Description of diff_drive_gazebo
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/carerobot_slam_ros1/devel
+
+Name: robot_costmap
+Description: Description of robot_costmap
+Version: 0.0.0
+Cflags: -I/home/ubuntu/carerobot_slam_ros1/src/robot_costmap/include
+Libs: -L${prefix}/lib -lrobot_costmap
+Requires: roscpp std_msgs

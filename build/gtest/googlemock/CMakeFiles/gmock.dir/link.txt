@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -O3 -Wall -Wno-all -Wno-error -O3 -DNDEBUG  -shared -Wl,-soname,libgmock.so -o ../lib/libgmock.so CMakeFiles/gmock.dir/src/gmock-all.cc.o  -Wl,-rpath,/home/ubuntu/carerobot_slam_ros1/build/gtest/lib ../lib/libgtest.so -lpthread 

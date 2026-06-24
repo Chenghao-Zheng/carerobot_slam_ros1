@@ -4,10 +4,10 @@ PREDICT_TIME: 2.0
 VELOCITY_RESOLUTION: 0.05
 YAWRATE_RESOLUTION: 0.1
 
-# 代价权重 (重要！请按此设置)
-TO_GOAL_COST_GAIN: 0.3        # 调低！让小车不再那么“死板”地追寻轨迹
-SPEED_COST_GAIN: 0.2          # 调低！
-OBSTACLE_COST_GAIN: 10.0      # 调高！！让障碍物成为不可逾越的鸿沟
+# 代价权重 
+TO_GOAL_COST_GAIN: 0.3          # 略微提高目标权重，使小车更愿意走向目标
+SPEED_COST_GAIN: 0.2
+OBSTACLE_COST_GAIN: 1.5          # 从 10.0 降到 1.5，让避障成为软约束而非硬约束
 
-TEMP_GOAL_RADIUS: 1.5         # 缩短前瞻，减少切弯冲动
+TEMP_GOAL_RADIUS: 1.5
 GOAL_THRESHOLD: 0.2

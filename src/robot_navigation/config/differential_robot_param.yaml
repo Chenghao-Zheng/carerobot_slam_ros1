@@ -1,7 +1,10 @@
 ROBOT_FRAME: "base_footprint"
 MAX_VELOCITY: 0.6          
-MIN_VELOCITY: 0.0         # 建议设为0，防止DWA规划出倒车路径
+MIN_VELOCITY: 0.0
 MAX_YAWRATE: 1.0           
 MAX_ACCELERATION: 0.5      
-MAX_D_YAWRATE: 2.0         # 适当调低，让避障轨迹更圆润
+MAX_D_YAWRATE: 2.0         
 MAX_DIST: 5.0
+# 增加以下两个参数（如果代码支持）：
+ROBOT_RADIUS: 0.3           # 适当增大，使小车认为安全距离更大
+SAFETY_MARGIN: 0.1          # 安全裕度，增加避障敏感度
